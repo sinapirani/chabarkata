@@ -22,7 +22,7 @@ const App = () => {
       <formContext.Provider value={[isVisible, setVisible]}>
         <div className=" relative h-screen w-100 flex justify-start items-center flex-col pt-10 bg-[#f2eff8]">
           <Header />
-          <div className={` h-[75%]  flex justify-start items-center flex-col w-full overflow-y-scroll `}>
+          <div className={` h-[75%] lg:w-2/3  flex justify-start items-center flex-col w-full overflow-y-scroll `}>
         
             <TodoList/>
 
