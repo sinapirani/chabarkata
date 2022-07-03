@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react"
 import TodoItem from './components/todo-util/todo-item'
 import Header from "./components/header"
+import AddTodo from "./components/addTodo-util/addTodo";
 
 export const todosContext = createContext(null)
 const initialContext = [
@@ -14,15 +15,18 @@ const App = () => {
 
   return (
     <todosContext.Provider value={[todosState,setTodosState]}>
-      <div class="h-screen w-100 flex justify-start items-center flex-col pt-48 bg-[#f2eff8]">
+      <div class=" relative h-screen w-100 flex justify-start items-center flex-col pt-48 bg-[#f2eff8]">
         <Header />
         {
           todosState.map((el,index) => {
             return(
-              <TodoItem name={el.name} />
+              <TodoItem key={index} name={el.name} id={el.id} />
             )
           })
         }
+
+        <AddTodo/>
+        
       </div>
     </todosContext.Provider>
   );
