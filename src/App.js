@@ -19,12 +19,13 @@ const App = () => {
   return (
     <todosContext.Provider value={[todosState, setTodosState]}>
       <formContext.Provider value={[isVisible, setVisible]}>
-        <div className=" relative h-screen w-100 flex justify-start items-center flex-col pt-48 bg-[#f2eff8]">
+        <div className=" relative h-screen w-100 flex justify-start items-center flex-col pt-16 bg-[#f2eff8]">
           <Header />
-          {todosState.map((el, index) => {
-            return <TodoItem key={index} name={el.name} id={el.id} />;
-          })}
-
+          <div className=" flex justify-center items-center flex-col w-full ">
+            {todosState.map((el, index) => {
+              return <TodoItem key={index} name={el.name} id={el.id} />;
+            })}
+          </div>
           <AddTodo />
           <AddTodoForm />
         </div>
