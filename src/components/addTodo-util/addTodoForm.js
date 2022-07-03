@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, } from "react";
+import { useContext, useEffect, useRef, useState, } from "react";
 import { formContext, todosContext } from "../../App";
 
 
@@ -8,13 +8,21 @@ const AddTodoForm = () => {
     const [todos,setTodos] = useContext(todosContext)
     const inputRef = useRef(null)
     const [isVisible, setVisible] = useContext(formContext)
+    const [isError, setError] = useState(false)
 
     useEffect(()=>{
       // eslint-disable-next-line no-unused-expressions
       isVisible && inputRef.current ? inputRef.current.focus() : ''
+      setError(false)
     },[isVisible,inputRef])
 
+
     const addTodo = () =>{
+      if(inputRef.current.value === '') {
+        setError(true)
+        return 0;
+      }
+      setError(false)
       setTodos([...todos, {id: Math.floor(Math.random()*99999999), name: inputRef.current.value, completed: false}])
       setVisible(false)
       inputRef.current.value = ''
@@ -36,6 +44,7 @@ const AddTodoForm = () => {
             <input ref={inputRef} className=" pl-4 h-12 text-صxl w-full rounded-tl-xl rounded-bl-xl outline-none" type="text" />
             <img onClick={addTodo} src="plus.svg"alt="" />
           </div>
+          <p className={`${isError ? 'block' : 'hidden'} text-red-300`}>input is empty!</p>
         </div>
       </div>
     );
