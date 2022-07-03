@@ -3,6 +3,7 @@ import TodoItem from './components/todo-util/todo-item'
 import Header from "./components/header"
 import AddTodo from "./components/addTodo-util/addTodo";
 import AddTodoForm from "./components/addTodo-util/addTodoForm";
+import TodoList from "./components/todo-util/todoList";
 
 export const todosContext = createContext(null)
 export const formContext = createContext(null)
@@ -19,12 +20,12 @@ const App = () => {
   return (
     <todosContext.Provider value={[todosState, setTodosState]}>
       <formContext.Provider value={[isVisible, setVisible]}>
-        <div className=" relative h-screen w-100 flex justify-start items-center flex-col pt-16 bg-[#f2eff8]">
+        <div className=" relative h-screen w-100 flex justify-start items-center flex-col pt-10 bg-[#f2eff8]">
           <Header />
-          <div className=" flex justify-center items-center flex-col w-full ">
-            {todosState.map((el, index) => {
-              return <TodoItem key={index} name={el.name} id={el.id} />;
-            })}
+          <div className={` h-[75%]  flex justify-start items-center flex-col w-full overflow-y-scroll `}>
+        
+            <TodoList/>
+
           </div>
           <AddTodo />
           <AddTodoForm />
